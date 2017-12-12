@@ -1,0 +1,112 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>One Page Wonder - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+<!--     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ -->
+    <!-- Custom styles for this template -->
+<!--     <link href="css/one-page-wonder.css" rel="stylesheet">
+ -->
+  </head>
+
+  <body>
+
+ <span id="bitcoinprice"> 
+</span> = <span class="text">1 BITCOIN</span>
+
+ <span id="bitcoinprice1">
+</span> 
+ of BITCOIN MINERS = 1 BITCOIN IN 
+<span id="btcroi"> 
+  </span>
+
+AFTER THAT IT'S PURE PROFIT.
+
+
+</body>
+</html>
+
+    <!-- Bootstrap core JavaScript -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script>
+
+function getProfitCalculator(bitcoinPrice) {
+    $.ajax({
+        type: 'GET',
+        url: 'https://byoblockchain.io/crypto',
+        success: function(body) {
+            var cryptocurrencies = JSON.parse(body);
+            var bitcoin = cryptocurrencies.Data[2]
+            var hashRate = 13500000000000
+            var difficulty = bitcoin.Difficulty
+            var days = 30.0;
+            var secondsADay = 86400.0
+            var block = 12.5    
+            var profitAMonth = (days * hashRate * block * secondsADay) / (difficulty * 2**32)
+            var profitADay = profitAMonth / days
+            var profitAYear = profitADay * 365.25
+            var profitAWeek = profitAYear / 52.0
+            var ROI = 3500.0 / (bitcoinPrice * profitADay)
+            var monthsROI = Math.floor(Math.ceil(ROI) / days)
+            var daysROI = Math.ceil(ROI) % days
+            var amountOfBitcoinBreakEven = ROI * profitADay
+            var monthAndDays = monthsROI + " months and " + daysROI + " days"
+            console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
+            // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
+
+            console.log(monthAndDays)
+            document.getElementById("btcroi").innerHTML = monthAndDays
+             document.getElementById("bitcoinprice").innerHTML = bitcoinPrice
+             document.getElementById("bitcoinprice1").innerHTML = bitcoinPrice
+
+        }
+    });
+}
+
+
+$.ajax({
+        async: true,
+        type: "GET",
+        url: "https://api.coinmarketcap.com/v1/ticker/",
+        success: function(cryptocurrencies) {
+            var bitcoinPrice = cryptocurrencies[0].price_usd;
+            var litecoinprice = cryptocurrencies[4].price_usd;
+            var ethprice = cryptocurrencies[1].price_usd;
+            var dashprice = cryptocurrencies[6].price_usd;
+            var moneroprice = cryptocurrencies[9].price_usd;
+            var zcashprice = cryptocurrencies[22].price_usd;
+
+            console.log("Price of Bitcoin:" + bitcoinPrice);
+            getProfitCalculator(bitcoinPrice)
+          }
+});  
+  
+</script>
+ 
+<style>
+
+.bitcoinprice1, .bitcoinprice, .btcroi
+{
+    display:inline;
+    float: left;
+}
+
+#text {
+    float: left;
+}
+
+
+</style>
