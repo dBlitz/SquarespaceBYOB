@@ -34,7 +34,7 @@ $.ajax({
         url: "https://api.coinmarketcap.com/v1/ticker/",
         success: function(cryptocurrencies) {
             var bitcoinPrice = cryptocurrencies[0].price_usd;
-            var litecoinprice = cryptocurrencies[4].price_usd;
+            var litecoinprice = cryptocurrencies[3].price_usd;
             var ethprice = cryptocurrencies[1].price_usd;
             var dashprice = cryptocurrencies[6].price_usd;
             var moneroprice = cryptocurrencies[9].price_usd;

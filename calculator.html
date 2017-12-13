@@ -1,0 +1,208 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>One Page Wonder - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+<!--     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ -->
+    <!-- Custom styles for this template -->
+<!--     <link href="css/one-page-wonder.css" rel="stylesheet">
+ -->
+  </head>
+
+  <body>
+
+<div class="main-login main-center">
+    <form class="form-horizontal" method="post" action="#">
+        
+        <div class="form-group">
+            <label for="name" class="cols-sm-2 control-label">HASHING POWER</label>
+            <div class="cols-sm-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" onkeyup="myFunction()" class="form-control" name="name" id="name" placeholder="ENTER TH/s"/>
+                </div>
+            </div>
+        </div>
+
+       
+    </form>
+  
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th class="calculatorheader">Profit</th>
+
+      <th class="calculatorheader">Profit</th>
+      <th class="calculatorheader">Mined</th>
+      <th class="calculatorheader">Power Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Day</td>
+      <td id="profitaday"></td>
+      <td id="minedday"></td>
+      <td>$0</td>
+    </tr>
+    <tr>
+      <td>Week</td>
+      <td id="profitaweek"></td>
+      <td id="minedweek"></td>
+      <td>$0</td>
+    </tr>
+    <tr>
+      <td>Month</td>
+      <td id="profitamonth"></td>
+      <td id="minedmonth"></td>
+      <td>$0</td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td id="profitayear"></td>
+      <td id="minedyear"></td>
+      <td>$0</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+    <div class="form-group ">
+    <button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="location.href = 'https://www.byobitcoin.io/abcd/';">BUY NOW</button>
+</div>
+
+</body>
+</html>
+
+
+
+    <!-- Bootstrap core JavaScript -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+function myFunction() {
+    var theHashRate = document.getElementById("name").value
+    console.log(theHashRate)
+    getProfitCalculator(17000, theHashRate)
+}
+
+function getProfitCalculator(bitcoinPrice, hashrate) {
+    // $.ajax({
+    //     type: 'GET',
+    //     url: 'https://byoblockchain.io/crypto',
+        // success: function(body) {
+            // var cryptocurrencies = JSON.parse(body);
+            // var bitcoin = cryptocurrencies.Data[2]
+            // var hashRate = 13500000000000
+            var hashRate = hashrate
+            var difficulty = 1590896927258
+            var days = 30.0;
+            var secondsADay = 86400.0
+            var block = 12.5    
+            var profitAMonth = (days * hashRate * block * secondsADay) / (difficulty * 2**32)
+            var profitADay = profitAMonth / days
+            var profitAYear = profitADay * 365.25
+            var profitAWeek = profitAYear / 52.0
+            var ROI = 3500.0 / (bitcoinPrice * profitADay)
+            var monthsROI = Math.floor(Math.ceil(ROI) / days)
+            var daysROI = Math.ceil(ROI) % days
+            var amountOfBitcoinBreakEven = ROI * profitADay
+            var monthAndDays = monthsROI + " months monthAndDays " + daysROI + " days"
+            // console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
+            // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
+
+            console.log(profitADay)
+
+            document.getElementById("profitaday").innerHTML = profitADay * bitcoinPrice
+            document.getElementById("profitaweek").innerHTML = profitAWeek * bitcoinPrice
+            document.getElementById("profitamonth").innerHTML = profitAMonth * bitcoinPrice
+            document.getElementById("profitayear").innerHTML = profitAYear * bitcoinPrice
+
+            document.getElementById("minedday").innerHTML = profitADay
+            document.getElementById("minedweek").innerHTML = profitAWeek
+            document.getElementById("minedmonth").innerHTML = profitAMonth
+            document.getElementById("minedyear").innerHTML = profitAYear
+
+        // }
+    // });
+}
+
+</script>
+
+
+<style>
+
+.main{
+    margin-top: 70px;
+}
+
+h1.title { 
+    font-size: 50px;
+    font-family: 'Passion One', cursive; 
+    font-weight: 400; 
+}
+
+hr{
+    width: 10%;
+    color: #fff;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+label{
+    margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+    background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+    margin-top: 30px;
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+
+  
+  .login-button{
+    margin-top: 5px;
+}
+
+.login-register{
+    font-size: 11px;
+    text-align: center;
+}
+
+
+</style>
