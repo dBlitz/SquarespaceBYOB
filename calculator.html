@@ -137,9 +137,16 @@ function getProfitCalculator(bitcoinPrice, hashrate) {
             // var cryptocurrencies = JSON.parse(body);
             // var bitcoin = cryptocurrencies.Data[2]
             // var hashRate = 13500000000000
+            var hashRate;
             var yourSelect = document.getElementById("selectedhashrate").value;
-            console.log(yourSelect)
-            var hashRate = hashrate * 1000000000000
+            // console.log(yourSelect)
+            if(yourSelect == "TH/s") {
+                hashRate = hashrate * 1000000000000
+            }
+            else {
+                hashRate = hashrate * 1000000000
+
+            }
             var difficulty = 1590896927258
             var days = 30.0;
             var secondsADay = 86400.0

@@ -1,93 +1,123 @@
-                <div class="main-login main-center">
-                    <form class="form-horizontal" method="post" action="#">
-                        
-                        <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">HASHING POWER</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="ENTER TH/s"/>
-                                </div>
-                            </div>
-                        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tabs</title>
+    <style>
+      .nav .active a { color: red; }
+      .tab-pane { display: none; }
+      .tab-pane.active { display: block; }
+    </style>
+  </head>
+  
+  <body>
 
-                      
-                        <div class="form-group ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">CALCULATE</button>
-                        </div>
-                       
-                    </form>
-                  
-                </div>
+   <ul id="tabs">
+    <li><a href="#" name="tab1">Bitcoin</a></li>
+    <li><a href="#" name="tab2">Litecoin</a></li>  
+</ul>
 
+<div id="content"> 
+    <div id="tab1">...</div>
+    <div id="tab2">...</div>
+    <div id="tab3">...</div>
+    <div id="tab4">...</div>
+</div>
 
-    <!-- Bootstrap core JavaScript -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#content").find("[id^='tab']").hide(); // Hide all content
+    $("#tabs li:first").attr("id","current"); // Activate the first tab
+    $("#content #tab1").fadeIn(); // Show first tab's content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();
+        if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+         return;       
+        }
+        else{             
+          $("#content").find("[id^='tab']").hide(); // Hide all content
+          $("#tabs li").attr("id",""); //Reset id's
+          $(this).parent().attr("id","current"); // Activate this
+          $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+        }
+    });
+});
+</script>
 
 <style>
-
-.main{
-    margin-top: 70px;
+    #tabs {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-h1.title { 
-    font-size: 50px;
-    font-family: 'Passion One', cursive; 
-    font-weight: 400; 
+#tabs li {
+  float: left;
+  margin: 0 .5em 0 0;
 }
 
-hr{
-    width: 10%;
-    color: #fff;
+#tabs a {
+  position: relative;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);  
+  padding: .7em 3.5em;
+  float: left;
+  text-decoration: none;
+  color: #444;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: 5px 0 0 0;
+  box-shadow: 0 2px 2px rgba(0,0,0,.4);
 }
 
-.form-group{
-    margin-bottom: 15px;
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after {
+  background: #fff;
 }
 
-label{
-    margin-bottom: 15px;
+#tabs a:focus {
+  outline: 0;
 }
 
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
+#tabs a::after {
+  content:'';
+  position:absolute;
+  z-index: 1;
+  top: 0;
+  right: -.5em;  
+  bottom: 0;
+  width: 1em;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);  
+  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+  transform: skew(10deg);
+  border-radius: 0 5px 0 0;  
 }
 
-.main-login{
-    background-color: # ;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
+#tabs #current a,
+#tabs #current a::after {
+  background: #fff;
+  z-index: 3;
 }
 
-.main-center{
-    margin-top: 30px;
-    margin: 0 auto;
-    max-width: 330px;
-    padding: 40px 40px;
-
+#content {
+  background: #fff;
+  padding: 2em;
+  height: 220px;
+  position: relative;
+  z-index: 2; 
+  border-radius: 0 5px 5px 5px;
+  box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
 }
-
-
-  
-  .login-button{
-    margin-top: 5px;
-}
-
-.login-register{
-    font-size: 11px;
-    text-align: center;
-}
-
 
 </style>
+
+
+</html>
+
