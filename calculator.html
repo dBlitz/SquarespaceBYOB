@@ -44,13 +44,10 @@
                 <input type="text" onkeyup="myFunction()" class="form-control" name="name" id="name" />
                 </td>
                  <td class="searchcat">
-                    <select name="c" id="catsel">
-                        <option>TH/s</option>
+                    <select name="c" id="selectedhashrate">
+                        <option selected="selected">TH/s</option>
                         <option>GH/s</option>
                     </select>
-                </td>
-                <td class="searchbtn">
-                    <input type="submit" class="button button-primary button-small" value="Go" />
                 </td>
             </tr>
         </table>
@@ -140,7 +137,9 @@ function getProfitCalculator(bitcoinPrice, hashrate) {
             // var cryptocurrencies = JSON.parse(body);
             // var bitcoin = cryptocurrencies.Data[2]
             // var hashRate = 13500000000000
-            var hashRate = hashrate
+            var yourSelect = document.getElementById("selectedhashrate").value;
+            console.log(yourSelect)
+            var hashRate = hashrate * 1000000000000
             var difficulty = 1590896927258
             var days = 30.0;
             var secondsADay = 86400.0
