@@ -153,44 +153,98 @@ function myFunction() {
 }
 
 function getProfitCalculator(bitcoinPrice, hashrate) {
-    // $.ajax({
-    //     type: 'GET',
-    //     url: 'https://byoblockchain.io/crypto',
-        // success: function(body) {
-            // var cryptocurrencies = JSON.parse(body);
-            // var bitcoin = cryptocurrencies.Data[2]
-            // var hashRate = 13500000000000
-            var hashRate = hashrate
-            var difficulty = 1590896927258
+
+ $.ajax({
+        type: 'GET',
+        url: 'https://byobitcoin.herokuapp.com/',
+        success: function(body) {
+
+            var cryptocurrencies = JSON.parse(body);
+            var bitcoin;
+            var litecoin;
+            for(index = 1; index < 50; index++) {
+                console.log(cryptocurrencies);
+                if(cryptocurrencies.Data[index].CoinName == "Bitcoin")
+                     bitcoin = cryptocurrencies.Data[index];
+                 if(cryptocurrencies.Data[index].CoinName == "Litecoin")
+                     litecoin = cryptocurrencies.Data[index];   
+
+            }
+
+            //BITCOIN
+            var bitcoinHashRate = 13500000000000
+            var bitcoinDifficulty = bitcoin.Difficulty
+            console.log(bitcoinDifficulty + "difficulty")
             var days = 30.0;
             var secondsADay = 86400.0
-            var block = 12.5    
-            var profitAMonth = (days * hashRate * block * secondsADay) / (difficulty * 2**32)
-            var profitADay = profitAMonth / days
-            var profitAYear = profitADay * 365.25
-            var profitAWeek = profitAYear / 52.0
-            var ROI = 3500.0 / (bitcoinPrice * profitADay)
-            var monthsROI = Math.floor(Math.ceil(ROI) / days)
-            var daysROI = Math.ceil(ROI) % days
-            var amountOfBitcoinBreakEven = ROI * profitADay
-            var monthAndDays = monthsROI + " months monthAndDays " + daysROI + " days"
-            // console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
+            var bitcoinBlock = 12.5    
+            var bitcoinProfitAMonth = (days * bitcoinHashRate * bitcoinBlock * secondsADay) / (bitcoinDifficulty * 2**32)
+            var bitcoinProfitADay = bitcoinProfitAMonth / days
+            var bitcoinProfitAYear = bitcoinProfitADay * 365.25
+            var bitcoinProfitAWeek = bitcoinProfitAYear / 52.0
+            var bitcoinROI = 3500.0 / (bitcoinPrice * bitcoinProfitADay)
+            var bitcionMonthsROI = Math.floor(Math.ceil(bitcoinROI) / days)
+            var bitcoinDaysROI = Math.ceil(bitcoinROI) % days
+            var bitcoinAmountOfBitcoinBreakEven = bitcoinROI * bitcoinProfitADay
+            var bitcoinMonthAndDays = bitcionMonthsROI + " Months and " + bitcoinDaysROI + " Days"
+            console.log("Profit a Day: " + bitcoinProfitADay + " Profit a Week: " + bitcoinProfitAWeek + " Profit a Month: " + bitcoinProfitAMonth + " Profit a Year:" + bitcoinProfitAYear)
             // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
+            document.getElementById("profitaday").innerHTML = bitcoinProfitADay * bitcoinPrice
+            document.getElementById("profitaweek").innerHTML = bitcoinProfitAWeek * bitcoinPrice
+            document.getElementById("profitamonth").innerHTML = bitcoinProfitAMonth * bitcoinPrice
+            document.getElementById("profitayear").innerHTML = bitcoinProfitAYear * bitcoinPrice
 
-            console.log(profitADay)
+            document.getElementById("minedday").innerHTML = bitcoinProfitADay
+            document.getElementById("minedweek").innerHTML = bitcoinProfitAWeek
+            document.getElementById("minedmonth").innerHTML = bitcoinProfitAMonth
+            document.getElementById("minedyear").innerHTML = bitcoinProfitAYear
 
-            document.getElementById("profitaday").innerHTML = profitADay * bitcoinPrice
-            document.getElementById("profitaweek").innerHTML = profitAWeek * bitcoinPrice
-            document.getElementById("profitamonth").innerHTML = profitAMonth * bitcoinPrice
-            document.getElementById("profitayear").innerHTML = profitAYear * bitcoinPrice
+        }
+    });
 
-            document.getElementById("minedday").innerHTML = profitADay
-            document.getElementById("minedweek").innerHTML = profitAWeek
-            document.getElementById("minedmonth").innerHTML = profitAMonth
-            document.getElementById("minedyear").innerHTML = profitAYear
 
-        // }
-    // });
+
+
+
+
+
+
+
+
+
+
+
+
+            // var hashRate = hashrate * 100000000
+            // var difficulty = 1590896927258
+            // var days = 30.0;
+            // var secondsADay = 86400.0
+            // var block = 12.5    
+            // var profitAMonth = (days * hashRate * block * secondsADay) / (difficulty * 2**32)
+            // var profitADay = profitAMonth / days
+            // var profitAYear = profitADay * 365.25
+            // var profitAWeek = profitAYear / 52.0
+            // var ROI = 3500.0 / (bitcoinPrice * profitADay)
+            // var monthsROI = Math.floor(Math.ceil(ROI) / days)
+            // var daysROI = Math.ceil(ROI) % days
+            // var amountOfBitcoinBreakEven = ROI * profitADay
+            // var monthAndDays = monthsROI + " months monthAndDays " + daysROI + " days"
+            // // console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
+            // // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
+
+            // console.log(profitADay)
+
+            // document.getElementById("profitaday").innerHTML = profitADay * bitcoinPrice
+            // document.getElementById("profitaweek").innerHTML = profitAWeek * bitcoinPrice
+            // document.getElementById("profitamonth").innerHTML = profitAMonth * bitcoinPrice
+            // document.getElementById("profitayear").innerHTML = profitAYear * bitcoinPrice
+
+            // document.getElementById("minedday").innerHTML = profitADay
+            // document.getElementById("minedweek").innerHTML = profitAWeek
+            // document.getElementById("minedmonth").innerHTML = profitAMonth
+            // document.getElementById("minedyear").innerHTML = profitAYear
+
+
 }
 
 </script>
