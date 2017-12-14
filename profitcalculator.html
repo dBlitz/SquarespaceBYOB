@@ -20,22 +20,63 @@
 
   <body>
 
- <span id="bitcoinprice"> 
-</span> = <span class="text">1 BITCOIN</span>
 
- <span id="bitcoinprice1">
-</span> 
- of BITCOIN MINERS = 1 BITCOIN IN 
-<span id="btcroi"> 
-  </span>
+<div class="main-login main-center">
+    <form class="form-horizontal" method="post" action="#">
+<!--https://catalin.red/css3-jquery-folder-tabs/ -->
+        <ul id="tabs">
+    <li><a href="#" name="tab1">Bitcoin</a></li>
+    <li><a href="#" name="tab2">Litecoin</a></li>  
+</ul>
 
-AFTER THAT IT'S PURE PROFIT.
+<div id="content"> 
+    <div id="tab1">
+<!--     <div id="tab2">...</div>
+    <div id="tab3">...</div>
+    <div id="tab4">...</div> -->
+        
+    <div class="form-group">
+            <label for="name" class="cols-sm-2 control-label">HASHING POWER</label>
+        <!-- http://jsfiddle.net/dzoppzzL/ -->
+         <table class="search">
+            <tr>
+              <td class="searchtxt">
+                <input type="text" onkeyup="myFunction()" class="form-control" name="name" id="name" />
+                </td>
+                 <td class="searchcat">
+                    <select name="c" id="catsel">
+                        <option>TH/s</option>
+                        <option>GH/s</option>
+                    </select>
+                </td>
+                <td class="searchbtn">
+                    <input type="submit" class="button button-primary button-small" value="Go" />
+                </td>
+            </tr>
+        </table>
+ <!--            <label for="name" class="cols-sm-2 control-label">HASHING POWER</label>
+            <div class="cols-sm-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" onkeyup="myFunction()" class="form-control" name="name" id="name" placeholder="ENTER TH/s"/>
+                </div>
+            </div> -->
+        </div>
 
-<!-- <div class="panel panel-default">
- -->
+
+        </div>
+</div>
+
+       
+    </form>
+  
+</div>
+
 <table class="table table-bordered">
   <thead>
     <tr>
+        <th class="calculatorheader">Profit</th>
+
       <th class="calculatorheader">Profit</th>
       <th class="calculatorheader">Mined</th>
       <th class="calculatorheader">Power Cost</th>
@@ -43,111 +84,84 @@ AFTER THAT IT'S PURE PROFIT.
   </thead>
   <tbody>
     <tr>
-      <td>$31.23/Day</td>
-      <td>.002/Day</td>
+      <td>Day</td>
+      <td id="profitaday"></td>
+      <td id="minedday"></td>
       <td>$0</td>
     </tr>
     <tr>
-      <td>$218/Week</td>
-      <td>.014/Week</td>
+      <td>Week</td>
+      <td id="profitaweek"></td>
+      <td id="minedweek"></td>
       <td>$0</td>
     </tr>
     <tr>
-      <td>$937/Month</td>
-      <td>.064/Month</td>
+      <td>Month</td>
+      <td id="profitamonth"></td>
+      <td id="minedmonth"></td>
       <td>$0</td>
     </tr>
     <tr>
-      <td>$11,400/Year</td>
-      <td>.78/Year</td>
+      <td>Year</td>
+      <td id="profitayear"></td>
+      <td id="minedyear"></td>
       <td>$0</td>
     </tr>
   </tbody>
 </table>
-<!-- </div>
- -->
 
-                <div class="main-login main-center">
-                    <form class="form-horizontal" method="post" action="#">
-                        
-                        <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">Your Name</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-                                </div>
-                            </div>
-                        </div>
+</div>
+    <div class="form-group ">
+    <button type="button" class="btn btn-primary btn-lg btn-block login-button" onclick="location.href = 'https://www.byobitcoin.io/abcd/';">BUY NOW</button>
+</div>
 
-                        <div class="form-group">
-                            <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="username" class="cols-sm-2 control-label">Username</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="cols-sm-2 control-label">Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                            <div class="cols-sm-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-                        </div>
-                        <div class="login-register">
-                            <a href="index.php">Login</a>
-                         </div>
-                    </form>
-                </div>
 </body>
 </html>
+
+
 
     <!-- Bootstrap core JavaScript -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
 <script>
+function myFunction() {
+    var theHashRate = document.getElementById("name").value
 
-function getProfitCalculator(bitcoinPrice) {
     $.ajax({
-        type: 'GET',
-        url: 'https://byoblockchain.io/crypto',
-        success: function(body) {
-            var cryptocurrencies = JSON.parse(body);
-            var bitcoin = cryptocurrencies.Data[2]
-            var hashRate = 13500000000000
-            var difficulty = bitcoin.Difficulty
+            async: true,
+            type: "GET",
+            url: "https://api.coinmarketcap.com/v1/ticker/",
+            success: function(cryptocurrencies) {
+                var bitcoinPrice;
+                for(index = 0; index < 10; index++) {
+                    if(cryptocurrencies[index].name == "Bitcoin") {
+                        bitcoinPrice = cryptocurrencies[index].price_usd;
+                        // bitcoinPrice1 = cryptocurrencies[index].price_usd;    
+                    }
+
+                }
+             getProfitCalculator(bitcoinPrice, theHashRate)
+
+            }
+
+    });
+
+    // console.log(theHashRate)
+
+}
+
+function getProfitCalculator(bitcoinPrice, hashrate) {
+    // $.ajax({
+    //     type: 'GET',
+    //     url: 'https://byoblockchain.io/crypto',
+        // success: function(body) {
+            // var cryptocurrencies = JSON.parse(body);
+            // var bitcoin = cryptocurrencies.Data[2]
+            // var hashRate = 13500000000000
+            var hashRate = hashrate
+            var difficulty = 1590896927258
             var days = 30.0;
             var secondsADay = 86400.0
             var block = 12.5    
@@ -159,63 +173,28 @@ function getProfitCalculator(bitcoinPrice) {
             var monthsROI = Math.floor(Math.ceil(ROI) / days)
             var daysROI = Math.ceil(ROI) % days
             var amountOfBitcoinBreakEven = ROI * profitADay
-            var monthAndDays = monthsROI + " months and " + daysROI + " days"
-            console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
+            var monthAndDays = monthsROI + " months monthAndDays " + daysROI + " days"
+            // console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
             // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
 
-            console.log(monthAndDays)
-            document.getElementById("btcroi").innerHTML = monthAndDays
-             document.getElementById("bitcoinprice").innerHTML = bitcoinPrice
-             document.getElementById("bitcoinprice1").innerHTML = bitcoinPrice
+            console.log(profitADay)
 
-        }
-    });
+            document.getElementById("profitaday").innerHTML = profitADay * bitcoinPrice
+            document.getElementById("profitaweek").innerHTML = profitAWeek * bitcoinPrice
+            document.getElementById("profitamonth").innerHTML = profitAMonth * bitcoinPrice
+            document.getElementById("profitayear").innerHTML = profitAYear * bitcoinPrice
+
+            document.getElementById("minedday").innerHTML = profitADay
+            document.getElementById("minedweek").innerHTML = profitAWeek
+            document.getElementById("minedmonth").innerHTML = profitAMonth
+            document.getElementById("minedyear").innerHTML = profitAYear
+
+        // }
+    // });
 }
 
-
-$.ajax({
-        async: true,
-        type: "GET",
-        url: "https://api.coinmarketcap.com/v1/ticker/",
-        success: function(cryptocurrencies) {
-            var bitcoinPrice = cryptocurrencies[0].price_usd;
-            var litecoinprice = cryptocurrencies[4].price_usd;
-            var ethprice = cryptocurrencies[1].price_usd;
-            var dashprice = cryptocurrencies[6].price_usd;
-            var moneroprice = cryptocurrencies[9].price_usd;
-            var zcashprice = cryptocurrencies[22].price_usd;
-
-            console.log("Price of Bitcoin:" + bitcoinPrice);
-            getProfitCalculator(bitcoinPrice)
-          }
-});  
-  
 </script>
- 
-<style>
 
-.bitcoinprice1, .bitcoinprice, .btcroi
-{
-    display:inline;
-    float: left;
-}
-
-#text {
-    float: left;
-}
-
-.calculatorheader {
-    background-color:#36b3a8 !important;
-    color: #FFFFFF;
-
-}
-
-table {
-   border-radius: 30px;
-}
-
-
-</style>
 
 <style>
 
@@ -268,7 +247,9 @@ input::-webkit-input-placeholder {
 
 }
 
-.login-button{
+
+  
+  .login-button{
     margin-top: 5px;
 }
 
@@ -277,5 +258,102 @@ input::-webkit-input-placeholder {
     text-align: center;
 }
 
+
+
+</style>
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#content").find("[id^='tab']").hide(); // Hide all content
+    $("#tabs li:first").attr("id","current"); // Activate the first tab
+    $("#content #tab1").fadeIn(); // Show first tab's content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();
+        if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+         return;       
+        }
+        else{             
+          $("#content").find("[id^='tab']").hide(); // Hide all content
+          $("#tabs li").attr("id",""); //Reset id's
+          $(this).parent().attr("id","current"); // Activate this
+          $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+        }
+    });
+});
+</script>
+
+<style>
+    #tabs {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+#tabs li {
+  float: left;
+  margin: 0 .5em 0 0;
+  width: auto;
+  float: left;
+}
+
+#tabs a {
+  position: relative;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);  
+  padding: .7em 3.5em;
+  float: left;
+  text-decoration: none;
+  color: #444;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: 5px 0 0 0;
+  box-shadow: 0 2px 2px rgba(0,0,0,.4);
+}
+
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after {
+  background: #fff;
+}
+
+#tabs a:focus {
+  outline: 0;
+}
+
+#tabs a::after {
+  content:'';
+  position:absolute;
+  z-index: 1;
+  top: 0;
+  right: -.5em;  
+  bottom: 0;
+  width: 1em;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);  
+  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+  transform: skew(10deg);
+  border-radius: 0 5px 0 0;  
+}
+
+#tabs #current a,
+#tabs #current a::after {
+  background: #fff;
+  z-index: 3;
+}
+
+#content {
+  background: #fff;
+  padding: 2em;
+  height: 220px;
+  position: relative;
+  z-index: 2; 
+  border-radius: 0 5px 5px 5px;
+  box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+}
 
 </style>
