@@ -39,23 +39,25 @@
   <div class="right">
 
   <div align="center">
-<h4>
+            <h2>Litecoin</h2>
+
+<h5>
   
   <b><span id="litecoinprice1"></span></b><b> =     
       <img src="https://vignette.wikia.nocookie.net/dogecoin/images/0/03/5XUCXPW.png" width="60" height="60">
   
   x1</b>
-    </h4>
+    </h5>
 
 
   </div>  
 <div align="center">
-  <h4>
-    <b> <span id="litecoinprice" ></span> </b><b> of Litecoin Miners =   <img src="https://vignette.wikia.nocookie.net/dogecoin/images/0/03/5XUCXPW.png" width="60" height="60"> x1</b> </h4>
+  <h5>
+    <b> <span id="litecoinprice" ></span> </b><b> of Miners =   <img src="https://vignette.wikia.nocookie.net/dogecoin/images/0/03/5XUCXPW.png" width="60" height="60"> x1</b> </h5>
 </div>
 <div align="center">
-  <h4>
-    <span id="litecoinprice1" ></span><b> in <span style="color: #0000CD;" id="monthsanddays"></span></b> </h4>
+  <h5>
+    <span id="litecoinprice1" ></span><b> in <span style="color: #0000CD;" id="monthsanddayslitecoin"></span></b> </h5>
 </div>
 
 
@@ -183,7 +185,7 @@ function getProfitCalculator(bitcoinPrice, litecoinPrice) {
             var cryptocurrencies = JSON.parse(body);
             var bitcoin;
             var litecoin;
-            for(index = 1; index < 10; index++) {
+            for(index = 1; index < 50; index++) {
                 console.log(cryptocurrencies);
                 if(cryptocurrencies.Data[index].CoinName == "Bitcoin")
                      bitcoin = cryptocurrencies.Data[index];
@@ -193,42 +195,42 @@ function getProfitCalculator(bitcoinPrice, litecoinPrice) {
             }
 
             //BITCOIN
-            var hashRate = 13500000000000
-            var difficulty = bitcoin.Difficulty
-            console.log(difficulty + "difficulty")
+            var bitcoinHashRate = 13500000000000
+            var bitcoinDifficulty = bitcoin.Difficulty
+            console.log(bitcoinDifficulty + "difficulty")
             var days = 30.0;
             var secondsADay = 86400.0
-            var block = 12.5    
-            var profitAMonth = (days * hashRate * block * secondsADay) / (difficulty * 2**32)
-            var profitADay = profitAMonth / days
-            var profitAYear = profitADay * 365.25
-            var profitAWeek = profitAYear / 52.0
-            var ROI = 3500.0 / (bitcoinPrice * profitADay)
-            var monthsROI = Math.floor(Math.ceil(ROI) / days)
-            var daysROI = Math.ceil(ROI) % days
-            var amountOfBitcoinBreakEven = ROI * profitADay
-            var monthAndDays = monthsROI + " Months and " + daysROI + " Days"
-            console.log("Profit a Day: " + profitADay + " Profit a Week: " + profitAWeek + " Profit a Month: " + profitAMonth + " Profit a Year:" + profitAYear)
+            var bitcoinBlock = 12.5    
+            var bitcoinProfitAMonth = (days * bitcoinHashRate * bitcoinBlock * secondsADay) / (bitcoinDifficulty * 2**32)
+            var bitcoinProfitADay = bitcoinProfitAMonth / days
+            var bitcoinProfitAYear = bitcoinProfitADay * 365.25
+            var bitcoinProfitAWeek = bitcoinProfitAYear / 52.0
+            var bitcoinROI = 3500.0 / (bitcoinPrice * bitcoinProfitADay)
+            var bitcionMonthsROI = Math.floor(Math.ceil(bitcoinROI) / days)
+            var bitcoinDaysROI = Math.ceil(bitcoinROI) % days
+            var bitcoinAmountOfBitcoinBreakEven = bitcoinROI * bitcoinProfitADay
+            var bitcoinMonthAndDays = bitcionMonthsROI + " Months and " + bitcoinDaysROI + " Days"
+            console.log("Profit a Day: " + bitcoinProfitADay + " Profit a Week: " + bitcoinProfitAWeek + " Profit a Month: " + bitcoinProfitAMonth + " Profit a Year:" + bitcoinProfitAYear)
             // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
 
-            console.log(monthAndDays)
+            console.log(bitcoinMonthAndDays)
 
             //LITECOIN
-             var hashRatelitecoin = 50400000000
-            var difficultylitecoin = litecoin.Difficulty
-            console.log(difficultylitecoin + "difficulty")
-            var blocklitecoin = 25    
-            var profitAMonthLitecoin = (days * hashRatelitecoin * block * secondsADay) / (difficulty * 2**32)
-            var profitADayLitecoin = profitAMonthLitecoin / days
-            var profitAYearLitecoin = profitADayLitecoin * 365.25
-            var profitAWeekLitecoin = profitAYearLitecoin / 52.0
-            var ROILitecoin = 3500.0 / (litecoin * profitADay)
-            var monthsROILitecoin = Math.floor(Math.ceil(ROI) / days)
-            var daysROILitecoin = Math.ceil(ROILitecoin) % days
-            var amountOfLitecoinBreakEven = ROILitecoin * profitADayLitecoin
-            var monthAndDaysLitecoin = monthsROILitecoin + " Months and " + daysROILitecoin + " Days"
-            document.getElementById("monthsanddaysbitcoin").innerHTML = monthAndDays;
-            document.getElementById("monthsanddayslitecoin").innerHTML = monthsanddayslitecoin;
+            var litecoinHashRate = 504000000
+            var litecoinDifficulty = litecoin.Difficulty
+            console.log(litecoinDifficulty + "difficulty")
+            var litecoinBlock = 25    
+            var litecoinProfitAMonth = (days * litecoinHashRate * litecoinBlock * secondsADay) / (litecoinDifficulty * 2**32)
+            var litecoinProfitADay = litecoinProfitAMonth / days
+            var litecoinProfitAYear = litecoinProfitADay * 365.25
+            var litecoinProfitAWeek = litecoinProfitAYear / 52.0
+            var litecoinROI = 3500.0 / (litecoinPrice * litecoinProfitADay)
+            var litecoinMonthsROI = Math.floor(Math.ceil(litecoinROI) / days)
+            var litecoinDaysROI = Math.ceil(litecoinROI) % days
+            var amountOfLitecoinBreakEven = litecoinROI * litecoinProfitADay
+            var litecoinMonthsAndDays = litecoinMonthsROI + " Months and " + litecoinDaysROI + " Days"
+            document.getElementById("monthsanddaysbitcoin").innerHTML = bitcoinMonthAndDays;
+            document.getElementById("monthsanddayslitecoin").innerHTML = litecoinMonthsAndDays;
 
         }
     });
