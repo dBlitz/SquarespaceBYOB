@@ -1,9 +1,48 @@
-  
+ <div class="container">
+   <div class="left">
+
   <div align="center">
-<h4>
+        <h2>Ƀitcoin</h2>
+
+<h5>
+
   
   <b><span id="bitcoinprice"></span></b><b> =     
       <img src="https://seeklogo.com/images/B/bitcoin-logo-DDAEEA68FA-seeklogo.com.png" width="60" height="60">
+  
+  x1</b>
+    </h5>
+
+
+  </div>  
+<div align="center">
+  <h5>
+    <b> <span id="bitcoinprice1" ></span> </b><b> of Miners =   <img src="https://seeklogo.com/images/B/bitcoin-logo-DDAEEA68FA-seeklogo.com.png" width="60" height="60"> x1</b> </h5>
+</div>
+<div align="center">
+  <h5>
+    <span id="bitcoinprice1" ></span><b> in <span style="color: #0000CD;" id="monthsanddaysbitcoin"></span></b> </h5>
+</div>
+
+
+<div class="text-center"> 
+<button type="button" class="btn btn-primary btn-lg"  onclick="location.href = 'https://www.byobitcoin.io/profit-calculator/';">CALCULATE YOUR PROFIT TODAY</button>
+</div>
+</div>
+
+<!-- <hr class="vline" />
+ -->
+
+
+
+
+  <div class="right">
+
+  <div align="center">
+<h4>
+  
+  <b><span id="litecoinprice1"></span></b><b> =     
+      <img src="https://vignette.wikia.nocookie.net/dogecoin/images/0/03/5XUCXPW.png" width="60" height="60">
   
   x1</b>
     </h4>
@@ -12,19 +51,54 @@
   </div>  
 <div align="center">
   <h4>
-    <b> <span id="bitcoinprice1" ></span> </b><b> of Bitcoin Miners =   <img src="https://seeklogo.com/images/B/bitcoin-logo-DDAEEA68FA-seeklogo.com.png" width="60" height="60"> x1</b> </h4>
+    <b> <span id="litecoinprice" ></span> </b><b> of Litecoin Miners =   <img src="https://vignette.wikia.nocookie.net/dogecoin/images/0/03/5XUCXPW.png" width="60" height="60"> x1</b> </h4>
 </div>
 <div align="center">
   <h4>
-    <span id="bitcoinprice1" ></span><b> in <span style="color: #0000CD;" id="monthsanddays"></span></b> </h4>
+    <span id="litecoinprice1" ></span><b> in <span style="color: #0000CD;" id="monthsanddays"></span></b> </h4>
 </div>
 
 
 <div class="text-center"> 
 <button type="button" class="btn btn-primary btn-lg"  onclick="location.href = 'https://www.byobitcoin.io/profit-calculator/';">CALCULATE YOUR PROFIT TODAY</button>
 </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 <style>
+
+.container {
+  width: 100%;
+}
+
+.vline
+{
+    position:fixed;
+    top:0;
+    left:50%;
+    bottom:0; margin:0;
+    border:none;
+    border-right:solid 1px black;
+    z-index:10;
+}
+
+.left,
+.right {
+  float: left;
+  width: 50%;
+}
+
  .btn-primary {
        background-color:#36b3a8 !important;
     border-color: #36b3a8 !important;
@@ -60,23 +134,47 @@ $.ajax({
         type: "GET",
         url: "https://api.coinmarketcap.com/v1/ticker/",
         success: function(cryptocurrencies) {
-            var bitcoinPrice = cryptocurrencies[0].price_usd;
-            var bitcoinPrice1 = cryptocurrencies[0].price_usd;
+            var bitcoinPrice;
+            var bitcoinPrice1;
+            var litecoinPrice;
+            var litecoinPrice1;
+            var ethprice;
+            for(index = 0; index < 10; index++) {
+                if(cryptocurrencies[index].name == "Bitcoin") {
+                    bitcoinPrice = cryptocurrencies[index].price_usd;
+                    bitcoinPrice1 = cryptocurrencies[index].price_usd;    
+                }
+                if(cryptocurrencies[index].name == "Litecoin") {
+                    litecoinPrice = cryptocurrencies[index].price_usd;
+                    litecoinPrice1 = cryptocurrencies[index].price_usd;    
+                }
+                 if(cryptocurrencies[index].name == "Ethereum") {
+                    ethprice = cryptocurrencies[index].price_usd;
+                }
+            }
 
-            var litecoinprice = cryptocurrencies[3].price_usd;
-            var ethprice = cryptocurrencies[1].price_usd;
-            var dashprice = cryptocurrencies[6].price_usd;
-            var moneroprice = cryptocurrencies[9].price_usd;
-            var zcashprice = cryptocurrencies[22].price_usd;
+
+
+
+            // var litecoinPrice = cryptocurrencies[3].price_usd;
+            // var litecoinPrice1 = litecoinPrice;
+
+            // var ethprice = cryptocurrencies[1].price_usd;
+            // var dashprice = cryptocurrencies[6].price_usd;
+            // var moneroprice = cryptocurrencies[9].price_usd;
+            // var zcashprice = cryptocurrencies[22].price_usd;
 
             console.log("Price of Bitcoin:" + bitcoinPrice);
             document.getElementById("bitcoinprice").innerHTML = "$" +  bitcoinPrice
             document.getElementById("bitcoinprice1").innerHTML = "$" +  bitcoinPrice
-            getProfitCalculator(bitcoinPrice);
+            document.getElementById("litecoinprice").innerHTML = "$" +  litecoinPrice
+            document.getElementById("litecoinprice1").innerHTML = "$" +  litecoinPrice1
+
+            getProfitCalculator(bitcoinPrice, litecoinPrice);
 
           }
 });  
-function getProfitCalculator(bitcoinPrice) {
+function getProfitCalculator(bitcoinPrice, litecoinPrice) {
     $.ajax({
         type: 'GET',
         url: 'https://byobitcoin.herokuapp.com/',
@@ -84,12 +182,17 @@ function getProfitCalculator(bitcoinPrice) {
 
             var cryptocurrencies = JSON.parse(body);
             var bitcoin;
+            var litecoin;
             for(index = 1; index < 10; index++) {
                 console.log(cryptocurrencies);
                 if(cryptocurrencies.Data[index].CoinName == "Bitcoin")
                      bitcoin = cryptocurrencies.Data[index];
+                 if(cryptocurrencies.Data[index].CoinName == "Litecoin")
+                     litecoin = cryptocurrencies.Data[index];   
 
             }
+
+            //BITCOIN
             var hashRate = 13500000000000
             var difficulty = bitcoin.Difficulty
             console.log(difficulty + "difficulty")
@@ -109,7 +212,23 @@ function getProfitCalculator(bitcoinPrice) {
             // console.log("ROI: " + ROI + " days until return of investment of $2,500 Antminer s9 @ 13.5 TH/s")
 
             console.log(monthAndDays)
-            document.getElementById("monthsanddays").innerHTML = monthAndDays;
+
+            //LITECOIN
+             var hashRatelitecoin = 50400000000
+            var difficultylitecoin = litecoin.Difficulty
+            console.log(difficultylitecoin + "difficulty")
+            var blocklitecoin = 25    
+            var profitAMonthLitecoin = (days * hashRatelitecoin * block * secondsADay) / (difficulty * 2**32)
+            var profitADayLitecoin = profitAMonthLitecoin / days
+            var profitAYearLitecoin = profitADayLitecoin * 365.25
+            var profitAWeekLitecoin = profitAYearLitecoin / 52.0
+            var ROILitecoin = 3500.0 / (litecoin * profitADay)
+            var monthsROILitecoin = Math.floor(Math.ceil(ROI) / days)
+            var daysROILitecoin = Math.ceil(ROILitecoin) % days
+            var amountOfLitecoinBreakEven = ROILitecoin * profitADayLitecoin
+            var monthAndDaysLitecoin = monthsROILitecoin + " Months and " + daysROILitecoin + " Days"
+            document.getElementById("monthsanddaysbitcoin").innerHTML = monthAndDays;
+            document.getElementById("monthsanddayslitecoin").innerHTML = monthsanddayslitecoin;
 
         }
     });
